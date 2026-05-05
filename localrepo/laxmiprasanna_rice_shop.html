@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Laxmiprasanna Rice Shop – Hyderabad</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --green-mid: #639922;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --text: #2C2C2A;
+    --muted: #5F5E5A;
+    --border: rgba(0,0,0,0.09);
+    --white: #ffffff;
+    --bg: #FAFAF8;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px;
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--green); letter-spacing: -0.3px; }
+  .logo span { color: var(--amber); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 400; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+
+  /* Hero */
+  .hero {
+    padding: 6rem 2.5rem 5rem;
+    max-width: 860px; margin: 0 auto; text-align: center;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+    padding: 4px 14px; border-radius: 100px; margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 600; line-height: 1.2;
+    color: var(--text); margin-bottom: 1.2rem;
+  }
+  .hero h1 em { color: var(--green); font-style: normal; }
+  .hero p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto 2rem; font-weight: 300; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--green);
+    color: white; font-size: 14px; font-weight: 500;
+    padding: 12px 28px; border-radius: 8px;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #2d5409; }
+
+  /* Divider */
+  .divider { height: 0.5px; background: var(--border); margin: 0 2.5rem; }
+
+  /* Stats */
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 12px; overflow: hidden; margin: 0 2.5rem;
+  }
+  .stat { padding: 1.8rem 2rem; border-right: 0.5px solid var(--border); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: var(--green); }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* Section */
+  section { padding: 5rem 2.5rem; max-width: 1000px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 1.2px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; margin-bottom: 0.8rem; }
+  .section-sub { color: var(--muted); font-weight: 300; font-size: 16px; max-width: 520px; margin-bottom: 3rem; }
+
+  /* Varieties */
+  .varieties-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .variety-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.4rem 1.2rem;
+    transition: border-color 0.2s;
+  }
+  .variety-card:hover { border-color: var(--green-mid); }
+  .variety-icon { font-size: 26px; margin-bottom: 0.7rem; }
+  .variety-name { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+  .variety-desc { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+  /* Pricing */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .price-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.4rem;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .price-card.featured { border: 1.5px solid var(--green-mid); }
+  .price-name { font-weight: 500; font-size: 15px; }
+  .price-qty { font-size: 12px; color: var(--muted); }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 1.7rem; font-weight: 600; color: var(--green); }
+  .price-amount span { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--muted); font-weight: 400; }
+  .popular-badge { display: inline-block; font-size: 11px; background: var(--green-light); color: var(--green); padding: 2px 10px; border-radius: 100px; font-weight: 500; }
+
+  /* Timings */
+  .timings-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 16px; padding: 2rem 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .timing-item { display: flex; flex-direction: column; gap: 4px; margin-bottom: 1.5rem; }
+  .timing-day { font-size: 13px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .timing-hours { font-size: 17px; font-weight: 400; color: var(--text); }
+  .open-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--green); }
+  .open-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-mid); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* Why us */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .why-card { padding: 1.6rem 1.4rem; border-left: 2px solid var(--green-light); }
+  .why-icon { font-size: 22px; margin-bottom: 0.8rem; }
+  .why-title { font-weight: 500; font-size: 15px; margin-bottom: 6px; }
+  .why-desc { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  /* Contact */
+  .contact-card {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 16px; padding: 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+  }
+  .contact-block h3 { font-weight: 500; font-size: 16px; margin-bottom: 1rem; }
+  .contact-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+  .contact-label { font-size: 13px; color: var(--muted); min-width: 80px; }
+  .contact-value { font-size: 14px; font-weight: 400; }
+
+  /* Footer */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--green); }
+  .footer-text { font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1.2rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 4rem 1.2rem 3rem; }
+    .stats { margin: 0 1.2rem; grid-template-columns: 1fr; }
+    .stat { border-right: none; border-bottom: 0.5px solid var(--border); }
+    section { padding: 3rem 1.2rem; }
+    .timings-card, .contact-card { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Laxmi<span>prasanna</span></div>
+  <ul class="nav-links">
+    <li><a href="#varieties">Varieties</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#timings">Timings</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-badge">Est. in Karimnagar, Telangana</div>
+  <h1>Premium Rice, <em>Straight</em><br>from Source to You</h1>
+  <p>Laxmiprasanna Rice Shop brings you the finest quality rice varieties — fresh, pure, and sourced directly from trusted farmers.</p>
+  <a href="#pricing" class="btn-primary">See Pricing</a>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Rice varieties available</div></div>
+  <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years of trust</div></div>
+  <div class="stat"><div class="stat-num">5000+</div><div class="stat-label">Happy customers</div></div>
+</div>
+
+<div class="divider" style="margin-top: 4rem;"></div>
+
+<!-- Varieties -->
+<section id="varieties">
+  <div class="section-label">What we offer</div>
+  <div class="section-title">All Rice Varieties</div>
+  <p class="section-sub">From everyday staples to premium aromatic varieties, we stock everything your kitchen needs.</p>
+  <div class="varieties-grid">
+    <div class="variety-card"><div class="variety-icon">🌾</div><div class="variety-name">Basmati Rice</div><div class="variety-desc">Long grain, aromatic. Ideal for biryanis & pulaos.</div></div>
+    <div class="variety-card"><div class="variety-icon">🍚</div><div class="variety-name">Sona Masoori</div><div class="variety-desc">Lightweight, low starch. Perfect for daily meals.</div></div>
+    <div class="variety-card"><div class="variety-icon">🌿</div><div class="variety-name">Ponni Rice</div><div class="variety-desc">Soft texture, great for South Indian dishes.</div></div>
+    <div class="variety-card"><div class="variety-icon">🏅</div><div class="variety-name">HMT Rice</div><div class="variety-desc">Traditional variety, loved for its taste and aroma.</div></div>
+    <div class="variety-card"><div class="variety-icon">🫙</div><div class="variety-name">Raw Rice</div><div class="variety-desc">Unprocessed, wholesome, used in many recipes.</div></div>
+    <div class="variety-card"><div class="variety-icon">🍛</div><div class="variety-name">Steam Rice</div><div class="variety-desc">Parboiled, retains nutrients, great texture.</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Pricing -->
+<section id="pricing">
+  <div class="section-label">Transparent pricing</div>
+  <div class="section-title">Our Price List</div>
+  <p class="section-sub">Fair prices for every budget. Bulk orders welcome — contact us for wholesale rates.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Sona Masoori</div>
+      <div class="price-qty">Per kg</div>
+      <div class="price-amount">₹52 <span>/ kg</span></div>
+    </div>
+    <div class="price-card featured">
+      <div><span class="popular-badge">Most Popular</span></div>
+      <div class="price-name">Basmati Rice</div>
+      <div class="price-qty">Per kg</div>
+      <div class="price-amount">₹95 <span>/ kg</span></div>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Ponni Rice</div>
+      <div class="price-qty">Per kg</div>
+      <div class="price-amount">₹48 <span>/ kg</span></div>
+    </div>
+    <div class="price-card">
+      <div class="price-name">HMT Rice</div>
+      <div class="price-qty">Per kg</div>
+      <div class="price-amount">₹55 <span>/ kg</span></div>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Steam Rice</div>
+      <div class="price-qty">Per kg</div>
+      <div class="price-amount">₹45 <span>/ kg</span></div>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Raw Rice</div>
+      <div class="price-qty">Per kg</div>
+      <div class="price-amount">₹38 <span>/ kg</span></div>
+    </div>
+  </div>
+  <div style="margin-top: 1.5rem; background: #FAEEDA; border-radius: 12px; padding: 1.2rem 1.5rem; display: flex; align-items: flex-start; gap: 12px;"><span style="font-size: 24px;">⚠️</span><div><div style="font-weight: 500; font-size: 15px; color: #BA7517;">Pricing Notice</div><div style="font-size: 13px; color: #5F5E5A; margin-top: 4px;">Rice prices <strong style="color: #2C2C2A;">change frequently</strong> based on market conditions and demand. The prices listed above are <strong style="color: #2C2C2A;">approximate estimates only</strong>. For the most accurate and current pricing, please contact us directly at <strong style="color: #2C2C2A;">+91 92468 34738</strong>.</div></div></div>
+  <div style="margin-top: 1.5rem; background: #EAF3DE; border-radius: 12px; padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 12px;">
+    <span style="font-size: 28px;">🚚</span>
+    <div>
+      <div style="font-weight: 500; font-size: 15px; color: #3B6D11;">Home Delivery Available!</div>
+      <div style="font-size: 13px; color: #5F5E5A; margin-top: 3px;">Home delivery available for bulk orders. Call us at <strong style="color: #2C2C2A;">+91 92468 34738</strong> to place your order.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Timings -->
+<section id="timings">
+  <div class="section-label">Store hours</div>
+  <div class="section-title">When to Find Us</div>
+  <p class="section-sub">We're open six days a week to serve you fresh and quality rice every day.</p>
+  <div class="timings-card">
+    <div>
+      <div class="timing-item">
+        <div class="timing-day">Monday – Friday</div>
+        <div class="timing-hours">10:00 AM – 10:00 PM</div>
+      </div>
+      <div class="timing-item">
+        <div class="timing-day">Saturday</div>
+        <div class="timing-hours">10:00 AM – 10:00 PM</div>
+      </div>
+    </div>
+    <div>
+      <div class="timing-item">
+        <div class="timing-day">Sunday</div>
+        <div class="timing-hours">Closed</div>
+      </div>
+      <div class="open-badge"><div class="open-dot"></div> Open Now (if weekday)</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Why us -->
+<section>
+  <div class="section-label">Our promise</div>
+  <div class="section-title">Why Choose Us?</div>
+  <p class="section-sub">We've built our reputation on quality, freshness, and honest service for over a decade.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🌱</div>
+      <div class="why-title">Farm Fresh Sourcing</div>
+      <div class="why-desc">We partner directly with farmers to bring you the freshest rice every season.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">✅</div>
+      <div class="why-title">Quality Assured</div>
+      <div class="why-desc">Every batch is checked for purity, moisture and grain quality before reaching you.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Best Prices</div>
+      <div class="why-desc">Fair, market-linked pricing with special bulk discounts for families and businesses.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📦</div>
+      <div class="why-title">Bulk Orders Welcome</div>
+      <div class="why-desc">Serving hotels, restaurants, and households with large volume orders seamlessly.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-label">Get in touch</div>
+  <div class="section-title">Visit or Call Us</div>
+  <p class="section-sub">We'd love to serve you. Come visit us or reach out any time during business hours.</p>
+  <div class="contact-card">
+    <div class="contact-block">
+      <h3>Contact Details</h3>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">+91 92468 34738</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">WhatsApp</span>
+        <span class="contact-value">+91 92468 34738</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">peddianandam@gmail.com</span>
+      </div>
+    </div>
+    <div class="contact-block">
+      <h3>Location</h3>
+      <div class="contact-row">
+        <span class="contact-label">Address</span>
+        <span class="contact-value">Near Karkanagadda,<br>Kisan Nagar, Karimnagar,<br>Telangana, India</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Area</span>
+        <span class="contact-value">Karimnagar, Telangana</span>
+      </div>
+      <div style="margin-top: 1rem;">
+        <a href="https://maps.google.com" target="_blank" class="btn-primary" style="font-size: 13px; padding: 10px 20px;">Get Directions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Laxmiprasanna Rice Shop</div>
+  <div class="footer-text">© 2025 Laxmiprasanna Rice Shop · Karimnagar, Telangana</div>
+</footer>
+
+</body>
+</html>
